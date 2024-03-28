@@ -3,7 +3,7 @@ resources:
   - repository: templates
     type: github
     name: JFolberth/TheYAMLPipelineOne
-    ref: refs/head/feature/databricks
+    ref: feature/databricks
     endpoint: JFolberth
 pool:
   vmImage: 'ubuntu-latest'
