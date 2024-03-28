@@ -10,7 +10,7 @@ stages:
             rootFolderOrFile: 'code'
             includeRootFolder: false
             archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/cicd-databricks.zip'
+            archiveFile: '$(Build.ArtifactStagingDirectory)/cicd_databricks_code.zip'
             replaceExistingArchive: true
         
         - task: PublishBuildArtifacts@1
