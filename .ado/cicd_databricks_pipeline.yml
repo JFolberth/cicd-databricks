@@ -31,5 +31,7 @@ stages:
                 versionSpec: '3.10'
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
-                script: curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh \ pip install wheel
+                script: |
+                    curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+                    pip install wheel
     
