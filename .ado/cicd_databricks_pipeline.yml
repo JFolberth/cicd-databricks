@@ -1,18 +1,16 @@
 pool:
   vmImage: 'ubuntu-latest'
+parameters:
+- name: environmentObjects
+  type: object
+  default:
+    - environmentName: 'dev2'
+      databricksHost: 'https://adb-5130230934145139.19.azuredatabricks.net'
 stages:
   - stage: build_databricks_notebook
     jobs:
       - job: buld_databricks_notebook
         steps:
-        - task: ArchiveFiles@2
-          inputs:
-            rootFolderOrFile: 'code'
-            includeRootFolder: false
-            archiveType: 'zip'
-            archiveFile: '$(Build.ArtifactStagingDirectory)/cicd_databricks_code.zip'
-            replaceExistingArchive: true
-        
         - task: PublishBuildArtifacts@1
           inputs:
             ArtifactName: 'DatabricksBuild'
