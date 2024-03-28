@@ -52,5 +52,5 @@ resources:
             - whl: "/Workspace${workspace.root_path}/files/Libraries/python/dabdemo/dist/dabdemo-0.0.1-py3-none-any.whl"
 
 targets:
-  dev:
+  dev2:
     mode: development
