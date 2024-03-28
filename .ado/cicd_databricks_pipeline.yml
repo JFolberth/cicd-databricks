@@ -26,5 +26,10 @@ stages:
       jobs:
         - job: deploy_databricks_notebook_${{ environmentObject.environmentName }}
           steps:
-            - task: 
+            - template: tasks/python_version_task.yml@templates
+              parameters:
+                versionSpec: '3.10'
+            - template: tasks/bash_inline_execute_task.yml@templates
+              parameters:
+                script: curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh \ pip install wheel
     
