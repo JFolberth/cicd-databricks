@@ -1,3 +1,10 @@
+resources:
+  repositories:
+  - repository: templates
+    type: github
+    name: JFolberth/TheYAMLPipelineOne
+    ref: refs/head/feature/databricks
+    endpoint: JFolberth
 pool:
   vmImage: 'ubuntu-latest'
 parameters:
@@ -9,8 +16,15 @@ parameters:
 stages:
   - stage: build_databricks_notebook
     jobs:
-      - job: buld_databricks_notebook
+      - job: build_databricks_notebook
         steps:
         - task: PublishBuildArtifacts@1
           inputs:
             ArtifactName: 'DatabricksBuild'
+  - ${{ each environmentObject in parameters.environmentObjects }} : 
+    - stage: deploy_databricks_notebook_${{ environmentObject.environmnentName }}
+      jobs:
+        - job: deploy_databricks_notebook_${{ environmentObject.environmentName }}
+          steps:
+            - task: 
+    
