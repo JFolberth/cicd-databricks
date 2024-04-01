@@ -18,10 +18,12 @@ stages:
     jobs:
       - job: build_databricks_notebook
         steps:
-        - task: PublishBuildArtifacts@1
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Pipeline Artifact'
           inputs:
             targetPath: code
-            ArtifactName: code
+            artifact: code
+            properties: ''
   - ${{ each environmentObject in parameters.environmentObjects }} : 
     - stage: deploy_databricks_notebook_${{ environmentObject.environmentName }}
       jobs:
@@ -37,5 +39,5 @@ stages:
                     pip install wheel
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
-                script: databricks bundle validate -t DatabricksBuild/
+                script: databricks bundle validate -t code/
     
