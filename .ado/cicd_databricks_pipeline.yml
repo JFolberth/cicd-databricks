@@ -34,4 +34,7 @@ stages:
                 script: |
                     curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
                     pip install wheel
+            - template: tasks/bash_inline_execute_task.yml@templates
+              parameters:
+                script: databricks bundle validate -t ${{ environmentObject.environmentName }}
     
