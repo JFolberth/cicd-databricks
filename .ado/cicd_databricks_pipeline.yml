@@ -12,7 +12,7 @@ parameters:
   type: object
   default:
     - environmentName: 'dev2'
-      databricksHost: 'https://adb-5130230934145139.19.azuredatabricks.net'
+      DATABRICKS_HOST: 'https://adb-5130230934145139.19.azuredatabricks.net'
 stages:
   - stage: build_databricks_notebook
     jobs:
