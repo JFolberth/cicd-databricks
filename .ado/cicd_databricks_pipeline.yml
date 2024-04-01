@@ -36,5 +36,5 @@ stages:
                     pip install wheel
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
-                script: databricks bundle validate -t ${{ environmentObject.environmentName }}
+                script: databricks bundle validate -t ../bundle/${{ environmentObject.environmentName }}
     
