@@ -29,7 +29,8 @@ stages:
       jobs:
         - job: deploy_databricks_notebook_${{ environmentObject.environmentName }}
           variables:
-           BUNDLE_ROOT= code
+           - name: BUNDLE_ROOT
+             value: code
           steps:
             - template: tasks/python_version_task.yml@templates
               parameters:
