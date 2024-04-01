@@ -31,6 +31,9 @@ stages:
           variables:
            - name: BUNDLE_ROOT
              value: code
+           - name: DATABRICKS_CLIENT_ID
+             value: 6dcbd994-004d-4bf4-87cf-1ed7d1a204b4
+           - group: databricks_dev2
           steps:
             - template: tasks/python_version_task.yml@templates
               parameters:
