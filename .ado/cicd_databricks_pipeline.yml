@@ -22,7 +22,7 @@ stages:
           inputs:
             ArtifactName: 'DatabricksBuild'
   - ${{ each environmentObject in parameters.environmentObjects }} : 
-    - stage: deploy_databricks_notebook_${{ environmentObject.environmnentName }}
+    - stage: deploy_databricks_notebook_${{ environmentObject.environmentName }}
       jobs:
         - job: deploy_databricks_notebook_${{ environmentObject.environmentName }}
           steps:
@@ -36,5 +36,5 @@ stages:
                     pip install wheel
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
-                script: databricks bundle validate -t ../code/bundles/${{ environmentObject.environmentName }}.yml
+                script: databricks bundle validate -t ../code/
     
