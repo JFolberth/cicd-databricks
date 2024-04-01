@@ -21,7 +21,7 @@ stages:
         - task: PublishBuildArtifacts@1
           inputs:
             targetPath: code
-            ArtifactName: 'DatabricksBuild'
+            ArtifactName: code
   - ${{ each environmentObject in parameters.environmentObjects }} : 
     - stage: deploy_databricks_notebook_${{ environmentObject.environmentName }}
       jobs:
