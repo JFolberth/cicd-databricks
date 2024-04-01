@@ -32,7 +32,7 @@ stages:
            - name: BUNDLE_ROOT
              value: code
            - name: DATABRICKS_CLIENT_ID
-             value: e7e28a74-30b3-4fce-9e38-ceedf0ae7682
+             value: '6dcbd994-004d-4bf4-87cf-1ed7d1a204b4'
            - name: DATABRICKS_HOST
              value: 'https://adb-5130230934145139.19.azuredatabricks.net'
            - group: databricks_dev2
