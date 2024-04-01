@@ -12,7 +12,7 @@ parameters:
   type: object
   default:
     - environmentName: 'dev2'
-      DATABRICKS_HOST: 'https://adb-5130230934145139.19.azuredatabricks.net'
+      
 stages:
   - stage: build_databricks_notebook
     jobs:
@@ -33,6 +33,8 @@ stages:
              value: code
            - name: DATABRICKS_CLIENT_ID
              value: 6dcbd994-004d-4bf4-87cf-1ed7d1a204b4
+           - name: DATABRICKS_HOST
+             value: 'https://adb-5130230934145139.19.azuredatabricks.net'
            - group: databricks_dev2
           steps:
             - template: tasks/python_version_task.yml@templates
