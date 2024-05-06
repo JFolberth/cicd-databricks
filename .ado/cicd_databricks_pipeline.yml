@@ -56,6 +56,7 @@ stages:
                 DATABRICKS_HOST: $(DATABRICKS_HOST)
                 DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
                 BUNDLE_TARGET: $(BUNDLE_TARGET)
+                BUNDLE_ROOT: $(BUNDLE_ROOT)
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
                 script: databricks bundle validate -t $(BUNDLE_TARGET)
