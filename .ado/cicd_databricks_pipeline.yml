@@ -31,13 +31,13 @@ stages:
           variables:
            - name: BUNDLE_ROOT
              value: code
-          - name: BUNDLE_TARGET
-            value: dev2
-          - name: DATABRICKS_CLIENT_ID
-            value: '6dcbd994-004d-4bf4-87cf-1ed7d1a204b4'
-          - name: DATABRICKS_HOST
-            value: 'https://adb-5130230934145139.19.azuredatabricks.net'
-          - group: databricks_dev2
+           - name: BUNDLE_TARGET
+             value: dev2
+           - name: DATABRICKS_CLIENT_ID
+             value: '6dcbd994-004d-4bf4-87cf-1ed7d1a204b4'
+           - name: DATABRICKS_HOST
+             value: 'https://adb-5130230934145139.19.azuredatabricks.net'
+           - group: databricks_dev2
           steps:
             - template: tasks/python_version_task.yml@templates
               parameters:
