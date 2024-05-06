@@ -31,7 +31,7 @@ stages:
           variables:
            - name: BUNDLE_ROOT
              value: code
-          - name: BUNDLE_TARGET
+           - name: BUNDLE_TARGET
              value: dev2
            - name: DATABRICKS_CLIENT_ID
              value: '6dcbd994-004d-4bf4-87cf-1ed7d1a204b4'
