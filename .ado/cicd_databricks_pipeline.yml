@@ -52,9 +52,9 @@ stages:
                 targetType: 'inline'
                 script: databricks bundle init -t ${{ environmentObject.environmentName }}
               env: 
-                DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
+                ARM_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
                 DATABRICKS_HOST: $(DATABRICKS_HOST)
-                DATABRICKS_CLIENT_SECRET: $(DATABRICKS_TOKEN)
+                ARM_CLIENT_SECRET: $(DATABRICKS_TOKEN)
                 BUNDLE_TARGET: $(BUNDLE_TARGET)
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
