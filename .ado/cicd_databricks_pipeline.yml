@@ -53,6 +53,7 @@ stages:
                 script: databricks bundle init -t ${{ environmentObject.environmentName }}
               env: 
                 ARM_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
+                ARM_TENANT_ID: 36070862-cf76-4c7b-a2b3-d1177f9469d1
                 DATABRICKS_HOST: $(DATABRICKS_HOST)
                 ARM_CLIENT_SECRET: $(DATABRICKS_TOKEN)
                 BUNDLE_TARGET: $(BUNDLE_TARGET)
