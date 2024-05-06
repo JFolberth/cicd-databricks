@@ -54,7 +54,7 @@ stages:
               env: 
                 DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
                 DATABRICKS_HOST: $(DATABRICKS_HOST)
-                DATABRICKS_CLIENT_SECRET: $(DATABRICKS_TOKEN)
+                DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
                 BUNDLE_TARGET: $(BUNDLE_TARGET)
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
