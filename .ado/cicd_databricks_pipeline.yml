@@ -54,7 +54,6 @@ stages:
               env: 
                 DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
                 DATABRICKS_HOST: $(DATABRICKS_HOST)
-                DATABRICKS_TOKEN: $(DATABRICKS_TOKEN)
             - template: tasks/bash_inline_execute_task.yml@templates
               parameters:
                 script: databricks bundle validate -t ${{ environmentObject.environmentName }}
