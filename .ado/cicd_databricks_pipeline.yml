@@ -25,41 +25,40 @@ stages:
             artifact: code
             properties: ''
       - ${{ each environmentObject in parameters.environmentObjects }} : 
-        jobs:
-          - job: build_publish_databricks_notebook_${{ environmentObject.environmentName }}
-            variables:
-              - template: ${{environmentObject.environmentName}}_databricks_variables.yml
-            steps:
-              - template: tasks/python_version_task.yml@templates
-                parameters:
-                  versionSpec: '3.10'
-              - template: tasks/bash_inline_execute_task.yml@templates
-                parameters:
-                  script: |
-                      curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
-                      pip install wheel
-              - task: Bash@3
-                inputs:
-                  targetType: 'inline'
-                  script: databricks bundle init default-python -t ${{ environmentObject.environmentName }}
-                env: 
-                  DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
-                  DATABRICKS_HOST: $(DATABRICKS_HOST)
-                  DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
-                  BUNDLE_TARGET: $(BUNDLE_TARGET)
-              - task: Bash@3
-                inputs:
-                  targetType: 'inline'
-                  script: databricks bundle validate -t ${{ environmentObject.environmentName }}
-                env: 
-                  DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
-                  DATABRICKS_HOST: $(DATABRICKS_HOST)
-                  DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
-                  BUNDLE_TARGET: $(BUNDLE_TARGET)
-              - task: PublishPipelineArtifact@1
-                displayName: 'Publish Pipeline Artifact'
-                inputs:
-                  targetPath: my_project
-                  artifact: ${{ environmentObject.environmentName }}
-                  properties: ''
-      
+        - job: build_publish_databricks_notebook_${{ environmentObject.environmentName }}
+          variables:
+            - template: ${{environmentObject.environmentName}}_databricks_variables.yml
+          steps:
+            - template: tasks/python_version_task.yml@templates
+              parameters:
+                versionSpec: '3.10'
+            - template: tasks/bash_inline_execute_task.yml@templates
+              parameters:
+                script: |
+                    curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+                    pip install wheel
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: databricks bundle init default-python -t ${{ environmentObject.environmentName }}
+              env: 
+                DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
+                DATABRICKS_HOST: $(DATABRICKS_HOST)
+                DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
+                BUNDLE_TARGET: $(BUNDLE_TARGET)
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
+                script: databricks bundle validate -t ${{ environmentObject.environmentName }}
+              env: 
+                DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
+                DATABRICKS_HOST: $(DATABRICKS_HOST)
+                DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
+                BUNDLE_TARGET: $(BUNDLE_TARGET)
+            - task: PublishPipelineArtifact@1
+              displayName: 'Publish Pipeline Artifact'
+              inputs:
+                targetPath: my_project
+                artifact: ${{ environmentObject.environmentName }}
+                properties: ''
+    
