@@ -16,7 +16,7 @@ parameters:
 stages:
   - stage: build_databricks_notebook
     jobs:
-      - job: build_databricks_notebook
+      - job: publish_notebook
         steps:
         - task: PublishPipelineArtifact@1
           displayName: 'Publish Pipeline Artifact'
@@ -29,15 +29,7 @@ stages:
       jobs:
         - job: deploy_databricks_notebook_${{ environmentObject.environmentName }}
           variables:
-           - name: BUNDLE_ROOT
-             value: code
-           - name: BUNDLE_TARGET
-             value: dev2
-           - name: DATABRICKS_CLIENT_ID
-             value: 6dcbd994-004d-4bf4-87cf-1ed7d1a204b4
-           - name: DATABRICKS_HOST
-             value: 'https://adb-5130230934145139.19.azuredatabricks.net'
-           - group: databricks_dev2
+            - template: ${{environmentObject.environmentName}}_databricks_variables.yml
           steps:
             - template: tasks/python_version_task.yml@templates
               parameters:
@@ -65,4 +57,10 @@ stages:
                 DATABRICKS_HOST: $(DATABRICKS_HOST)
                 DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
                 BUNDLE_TARGET: $(BUNDLE_TARGET)
+            - task: PublishPipelineArtifact@1
+              displayName: 'Publish Pipeline Artifact'
+              inputs:
+                targetPath: my_project
+                artifact: ${{ environmentObject.environmentName }}
+                properties: ''
     
