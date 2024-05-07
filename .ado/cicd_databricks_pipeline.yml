@@ -37,15 +37,15 @@ stages:
                 script: |
                     curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
                     pip install wheel
-            - task: tasks/bash_inline_execute_task.yml@templates
-              parameters:
+            - task: Bash@3
+              inputs:
+                targetType: 'inline'
                 script: databricks bundle init default-python -t ${{ environmentObject.environmentName }}
-                envVariables: [
-                    DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID),
-                    DATABRICKS_HOST: $(DATABRICKS_HOST),
-                    DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET),
-                    BUNDLE_TARGET: $(BUNDLE_TARGET)
-                  ]
+              env: 
+                DATABRICKS_CLIENT_ID: $(DATABRICKS_CLIENT_ID)
+                DATABRICKS_HOST: $(DATABRICKS_HOST)
+                DATABRICKS_CLIENT_SECRET: $(DATABRICKS_CLIENT_SECRET)
+                BUNDLE_TARGET: $(BUNDLE_TARGET)
             - task: Bash@3
               inputs:
                 targetType: 'inline'
